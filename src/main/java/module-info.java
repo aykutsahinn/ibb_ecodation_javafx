@@ -35,6 +35,7 @@ module com.aykutsahin.ibb_ecodation_javafx {
         // Java'daki SQL işlemlerini (Connection, Statement, ResultSet vb.) gerçekleştirebilmek için gereklidir.
         requires java.sql;
         requires org.apache.poi.poi;
+        requires java.desktop;
         //requires eu.hansolo.tilesfx;
 
         // #######################################################################################

@@ -1,0 +1,13 @@
+src/
+├── com.aykutsahin._javafx.dao/
+│   ├── UserDAO.java
+│   ├── DBConnection.java
+├── com.aykutsahin._javafx.dto/
+│   ├── UserDTO.java
+├── com.aykutsahin._javafx.controller/
+│   ├── LoginController.java
+│   ├── RegisterController.java
+├── view/
+│   ├── login.fxml
+│   ├── register.fxml
+├── MainApp.java

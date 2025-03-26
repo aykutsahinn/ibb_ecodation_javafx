@@ -15,7 +15,7 @@ public class SingletonDBConnection {
 
     // Singleton Design pattern
     private static SingletonDBConnection instance;
-    private Connection connection;
+    private  Connection connection;
 
     // Parametresiz Constructor (private ile dışarıdan erişilemez olmasını sağlamak)
     private SingletonDBConnection() {
@@ -98,4 +98,3 @@ public class SingletonDBConnection {
         //dataSet();
     }
 } // end class
-

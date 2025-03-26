@@ -13,7 +13,7 @@ git push -u origin master
 
 ## Git Clone
 ```sh 
-git clone https://github.com/hamitmizrak/ibb_ecodation_javafx
+git clone https://github.com/aykutsahinn/ibb_ecodation_javafx
 ```
 
 ## JDK Dikkat

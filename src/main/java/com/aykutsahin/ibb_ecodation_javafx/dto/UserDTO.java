@@ -28,7 +28,7 @@ public class UserDTO {
         UserDTO userDTO= UserDTO.builder()
                 .id(0)
                 .username("username")
-                .email("hamitmizrak@gmail.com")
+                .email("aykutsahin@gmail.com")
                 .password("root")
                 .build();
 

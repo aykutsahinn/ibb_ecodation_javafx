@@ -31,7 +31,7 @@ public class HelloApplication extends Application {
          */
 
         // Başlangıçta Login Ekranı Gelsin
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("view/login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/aykutsahin/ibb_ecodation_javafx/view/login.fxml"));
         Parent parent= fxmlLoader.load();
         stage.setTitle("Kullanıcı Yönetimi Login Sayfası");
         stage.setScene(new Scene(parent));

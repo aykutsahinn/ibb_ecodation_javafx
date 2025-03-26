@@ -43,6 +43,7 @@ module com.aykutsahin.ibb_ecodation_javafx {
         // `opens` ifadesi, bir paketin runtime'da (çalışma zamanında) refleksiyon (reflection) kullanılarak erişilebilir olmasını sağlar.
         // Ana paket (Root package) açılıyor, böylece FXML dosyalarından erişilebilir.
         opens com.aykutsahin.ibb_ecodation_javafx to javafx.fxml;
+        opens com.aykutsahin.ibb_ecodation_javafx.controller to javafx.fxml;
 
 
         // DTO (Data Transfer Object) paketinin içeriği, JavaFX bileşenleri ve Lombok tarafından erişilebilir olmalıdır.

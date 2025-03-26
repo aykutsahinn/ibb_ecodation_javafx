@@ -72,13 +72,13 @@ public class LoginController {
         username = usernameField.getText();
         password = passwordField.getText();
 
-        // optionalUserDTO(Veri tabanına ekle)
-        Optional<UserDTO> optionalUserDTO = userDAO.loginUser(username, password);
+        // optionalLoginUserDTO(Veri tabanına ekle)
+        Optional<UserDTO> optionalLoginUserDTO = userDAO.loginUser(username, password);
 
         // Eğer Veri Boş değilse
-        if (optionalUserDTO.isPresent()) {
-            // Veriyi almak
-            UserDTO userDTO = optionalUserDTO.get();
+        if (optionalLoginUserDTO.isPresent()) {
+            // UserDTO Verisini almak
+            UserDTO userDTO = optionalLoginUserDTO.get();
 
             // Eğer başarılıysa Pop-up göster
             showAlert("Başarılı", "Giriş Başarılı", Alert.AlertType.INFORMATION);
@@ -97,7 +97,7 @@ public class LoginController {
     private void openAdminPane() {
         try {
             // FXML Dosyalarını Yükle (Kayıt ekranının FXML dosyasını yüklüyoruz)
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hamitmizrak/ibb_ecodation_javafx/view/admin.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/aykutsahin/ibb_ecodation_javafx/view/admin.fxml"));
             Parent parent = fxmlLoader.load();
 
             // Var olan sahneyi alıp ve değiştirmek ve
@@ -125,7 +125,7 @@ public class LoginController {
     private void switchToRegister(ActionEvent actionEvent) {
         try {
             // FXML Dosyalarını Yükle (Kayıt ekranının FXML dosyasını yüklüyoruz)
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hamitmizrak/ibb_ecodation_javafx/view/register.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/aykutsahin/ibb_ecodation_javafx/view/register.fxml"));
             Parent parent = fxmlLoader.load();
 
             // Var olan sahneyi alıp ve değiştirmek
@@ -146,4 +146,3 @@ public class LoginController {
     } //end switchToLogin
 
 } //end LoginController
-

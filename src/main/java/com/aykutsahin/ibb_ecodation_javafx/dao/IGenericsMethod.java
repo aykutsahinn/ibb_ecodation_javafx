@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public interface IGenericsMethod<T> {
+
     // GENERICS METOTO (LIST,FIND)
     // ResultSet'ten UserDTO oluşturmayı tek bir yardımcı metot
     // ResultSetten UserDTO oluştur

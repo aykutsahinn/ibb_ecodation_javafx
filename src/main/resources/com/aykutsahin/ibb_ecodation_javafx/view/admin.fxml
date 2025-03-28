@@ -1,48 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Ana konteyner olan admiin rayüz sayfası -->
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.aykutsahin.ibb_ecodation_javafx.controller.AdminController">
-    <children>
-        <!--Dikey düzenlenme için VBOX tablo içeriğin kullanalım-->
-        <!--
-             JavaFX’te VBox, bir layout (yerleşim) yöneticisidir. Yani sahnedeki bileşenlerin (button, label, textfield vb.)
-             nasıl konumlandırılacağını belirleyen bir konteynerdir.
-             VBox özel olarak bileşenleri dikey (vertical) olarak yerleştirir.
-             Her yeni bileşen, bir öncekinin altına gelecek şekilde sıralanır.
-        -->
-        <VBox  spacing="10" layoutX="10" layoutY="10"
-               style="-fx-padding: 1;" stylesheets="@css/styles.css">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-            <!--Kullanıcı Bilgilerini Göstermek için tablo-->
-            <TableView fx:id="userTable">
-                <columns>
-                    <TableColumn fx:id="idColumn" text="ID"/>
-                    <TableColumn fx:id="usernameColumn" text="Kullanıcı Adı"/>
-                    <TableColumn fx:id="emailColumn" text="Email Adres"/>
-                    <TableColumn fx:id="passwordColumn" text="Şifre"/>
-                </columns>
-            </TableView>
+<SplitPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.aykutsahin.ibb_ecodation_javafx.controller.AdminController"
+           orientation="HORIZONTAL"
+           prefWidth="600" prefHeight="300"
+           style="-fx-background-image: url('/images/login.webp');
+                   -fx-background-size: cover;
+                   -fx-background-position: center;"
+>
+    <!--stylesheets="@../css/admin.css"-->
 
-            <!--Butonları Yatay olarak düzenlenmesini için-->
-            <HBox spacing="10">
-                <Button text="Kullanıcı Ekle" onAction="#addUser" />
-                <Button text="Kullanıcı Güncelle" onAction="#updateUser" />
-                <Button text="Kullanıcı Sil" onAction="#deleteUser" />
-            </HBox>
+    <!-- SOL PANEL -->
+    <VBox spacing="20"
+          layoutX="30" layoutY="40"
+          style="-fx-padding: 30;
+                     -fx-background-color: rgba(255,255,255,0.85);
+                     -fx-background-radius: 15;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0.5, 0, 5);"
+          stylesheets="@../css/styles.css">
 
-            <!--Butonları Yatay olarak düzenlenmesini için-->
-            <HBox spacing="10">
-                <Button text="Tabloyu Yenile" onAction="#refreshTable" />
-                <Button text="Çıkış Yap" onAction="#logout" />
-            </HBox>
+        <!-- NAVIGATION MENÜ -->
+        <MenuBar fx:id="menuBar">
+            <menus>
+                <Menu text="Dosya">
+                    <MenuItem text="Çıkış" onAction="#logout"/>
+                </Menu>
+                <Menu text="İşlemler">
+                    <MenuItem text="Kullanıcı Ekle" onAction="#addUser"/>
+                    <MenuItem text="Kullanıcı Güncelle" onAction="#updateUser"/>
+                    <MenuItem text="Kullanıcı Sil" onAction="#deleteUser"/>
+                </Menu>
+                <Menu text="Güvenli Çıkış">
+                    <MenuItem text="Çıkış Yap" onAction="#logout"/>
+                </Menu>
+                <Menu text="Yardım">
+                    <MenuItem text="Hakkında" onAction="#showAbout"/>
+                </Menu>
+            </menus>
+        </MenuBar>
 
-        </VBox>
-    </children>
-</AnchorPane>
+        <Label text="👤 Kullanıcı Yönetimi" styleClass="panel-title" />
+        <TextField fx:id="searchField" promptText="Kullanıcı adı, e-posta veya rol ara..." styleClass="input-field"/>
+        <ComboBox fx:id="filterRoleComboBox" promptText="Rol filtrele" styleClass="combo-box"/>
+        <TableView fx:id="userTable" prefHeight="350" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="40"/>
+                <TableColumn fx:id="usernameColumn" text="Kullanıcı Adı" prefWidth="150"/>
+                <TableColumn fx:id="emailColumn" text="E-Posta" prefWidth="180"/>
+                <TableColumn fx:id="passwordColumn" text="Şifre" prefWidth="100"/>
+                <TableColumn fx:id="roleColumn" text="Rol" prefWidth="80"/>
+            </columns>
+        </TableView>
+        <HBox spacing="10">
+            <Button text="Ekle" onAction="#addUser" styleClass="action-btn green"/>
+            <Button text="Güncelle" onAction="#updateUser" styleClass="action-btn blue"/>
+            <Button text="Sil" onAction="#deleteUser" styleClass="action-btn red"/>
+        </HBox>
+        <HBox spacing="10">
+            <Button text="Yenile" onAction="#refreshTable" styleClass="utility-btn"/>
+            <Button text="Yazdır" onAction="#printTable" styleClass="utility-btn"/>
+            <Button text="Hesap Makinesi" onAction="#openCalculator" styleClass="utility-btn"/>
+            <Button text="Çıkış Yap" onAction="#logout" styleClass="utility-btn logout"/>
+        </HBox>
+    </VBox>
 
+    <!-- SAĞ PANEL -->
+    <VBox spacing="10" styleClass="panel-right">
+        <Label text="📊 KDV Hesaplama" styleClass="panel-title" />
+        <TextField fx:id="searchKdvField" promptText="Fiş numarası ara..." styleClass="input-field"/>
+        <TableView fx:id="kdvTable" prefHeight="350" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="idColumnKdv" text="ID" prefWidth="40"/>
+                <TableColumn fx:id="amountColumn" text="Tutar" prefWidth="80"/>
+                <TableColumn fx:id="kdvRateColumn" text="KDV (%)" prefWidth="80"/>
+                <TableColumn fx:id="kdvAmountColumn" text="KDV Tutarı" prefWidth="90"/>
+                <TableColumn fx:id="totalAmountColumn" text="Toplam" prefWidth="90"/>
+                <TableColumn fx:id="receiptColumn" text="Fiş No" prefWidth="90"/>
+                <TableColumn fx:id="dateColumn" text="Tarih" prefWidth="100"/>
+                <TableColumn fx:id="descColumn" text="Açıklama" prefWidth="150"/>
+            </columns>
+        </TableView>
+        <HBox spacing="10">
+            <Button text="KDV Ekle" onAction="#addKdv" styleClass="action-btn green"/>
+            <Button text="Güncelle" onAction="#updateKdv" styleClass="action-btn blue"/>
+            <Button text="Sil" onAction="#deleteKdv" styleClass="action-btn red"/>
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="1">
+            <Button fx:id="btnKdvExportTxt" text="TXT'ye Aktar" onAction="#exportKdvAsTxt"/>
+            <Button fx:id="btnKdvExportPdf" text="PDF'e Aktar" onAction="#exportKdvAsPdf"/>
+            <Button fx:id="btnKdvExportExcel" text="Excel'e Aktar" onAction="#exportKdvAsExcel"/>
+            <Button fx:id="btnKdvPrint" text="Yazdır" onAction="#printKdvTable"/>
+            <Button fx:id="btnKdvMail" text="Mail Gönder" onAction="#sendKdvByMail"/>
+        </HBox>
+
+    </VBox>
+
+</SplitPane>
